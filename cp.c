@@ -19,7 +19,7 @@ int isdir(int fd) {
 void concat_srcname(char *srcname, char *dstname) {
     char *tmp;
     char *src = srcname;
-    while (tmp = strchr(srcname, '/')) {
+    while ((tmp = strchr(srcname, '/'))) {
         src = tmp + 1;
     }
     strcat(src, dstname);
@@ -53,16 +53,15 @@ int main(int argc, char *argv[]) {
         exit();
     }
 
-    int srclen = strlen(srcname);
     int dstlen = strlen(dstname);
     if (dstname[dstlen - 1] == '/') {
         // The dest file name contains a dir prefix
         concat_srcname(srcname, dstname);
     }
 
-    int dstfd = open(dstname, O_WRONLY);
+    int dstfd = open(dstname, O_CREATE | O_WRONLY);
     if (dstfd == -1) {
-        printf(1, "Open destination file %s failed\n", srcname);
+        printf(1, "Open destination file %s failed\n", dstname);
         exit();
     }
 

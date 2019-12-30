@@ -21,6 +21,7 @@ void strcat(char *src, char *dst) {
   for(; *src; src++, dst++) {
     *dst = *src;
   }
+  *dst = 0;
 }
 
 int
