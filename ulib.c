@@ -15,6 +15,14 @@ strcpy(char *s, char *t)
   return os;
 }
 
+void strcat(char *src, char *dst) {
+  // Concat string src to dst
+  for(; *dst; dst++) {}
+  for(; *src; src++, dst++) {
+    *dst = *src;
+  }
+}
+
 int
 strcmp(const char *p, const char *q)
 {
